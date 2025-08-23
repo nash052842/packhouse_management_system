@@ -1,28 +1,28 @@
-from django import dispatch
+        
 from rest_framework import serializers
-from . models import Harvest, Package, Quality_control, harvest,package,quality_control,inventory,distpach
+from . models import Harvest, Package,QualityControl, Harvest, Package, Inventory, Dispatch
 
-class modelserilaizer(serializers.HarvetsSerializer):
+class modelserializer(serializers.HarvestSerializer):
      class Meta:
         model= Harvest
         fields= '__all__'
 class modelserializer(serializers.PackageSerializer):
      class Meta:
-        models = Package
+        model = Package
         fields = '__all__'
 
-class modelserializer(serializers.Quality_controlSerializer):
+class modelserializer(serializers.QualityControlSerializer):
     class Meta:
-        model = Quality_control
+        model = QualityControl
         fields = '__all__'
 
-class modelserializer(serializers.InventorySerilizer):
+class modelserializer(serializers.InventorySerializer):
      class Meta:
-        model = inventory
+        model = Inventory
         fields = '__all__'
 
-class modelserializer(serializers.DispatchSerilizer):
+class modelserializer(serializers.DispatchSerializer):
     class Meta:
-        model =dispatch
+        model = Dispatch
         fields = '__all__'
 

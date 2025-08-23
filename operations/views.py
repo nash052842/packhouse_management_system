@@ -1,23 +1,31 @@
 from rest_framework import viewsets
-from. import harvest, package,inventory,quality_control,dispatch
-from serializers import harvestserializers,packageserializers,quality_controlserilaizers,inventoryserilizers,distpachserilizers
+from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Harvest, Package, Inventory, QualityControl, Dispatch
+from .serializers import (
+    HarvestSerializer,
+    PackageSerializer,
+    QualityControlSerializer,
+    InventorySerializer,
+    DispatchSerializer
+)
 
-class HarvestViewset(viewsets.ModelViewSet):
-    queryset = harvest .objects.all()
-    serializer_class = harvestserializers
+class HarvestViewSet(viewsets.ModelViewSet):
+    queryset = Harvest.objects.all()
+    serializer_class = HarvestSerializer
 
-class PackageViewset(viewsets.ModelViewSet):
-    queryset = package.objecst.all()
-    serializer_class = packageserializers
+class PackageViewSet(viewsets.ModelViewSet):
+    queryset = Package.objects.all()
+    serializer_class = PackageSerializer
 
-class Quality_controlViewset(viewsets.ModelViewSet):
-    queryset = quality_control.objects.all()
-    serializer_class = quality_controlserilaizers
+class QualityControlViewSet(viewsets.ModelViewSet):
+    queryset = QualityControl.objects.all()
+    serializer_class = QualityControlSerializer
 
-class InventoryViewset(viewsets.ModelViewSet):
-    queryset = inventory.objects.all()
-    serializer_class = inventoryserilizers
+class InventoryViewSet(viewsets.ModelViewSet):
+    queryset = Inventory.objects.all()
+    serializer_class = InventorySerializer
 
-class dispatchViewset(viewsets.ModelViewSet):
-    queryset = dispatch.objects.all()
-    serializer_class = distpachserilizers
+class DispatchViewSet(viewsets.ModelViewSet):
+    queryset = Dispatch.objects.all()
+    serializer_class = DispatchSerializer
