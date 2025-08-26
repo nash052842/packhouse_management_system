@@ -2,22 +2,22 @@ from django.db import models
 
 
 class Harvest(models.Model):
-    harvest = models.CharField(max_length=50)
+    phytos = models.CharField(max_length=50, default='Unnamed Phytos')
     total_mites_harvest = models.IntegerField(default=0)
     batch_number = models.CharField(max_length=50)
     date_harvested = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.harvest}, {self.total_mites_harvest}, {self.batch_number}, {self.date_harvested}"
+        return f"{self.phytos}, {self.total_mites_harvest}, {self.batch_number}, {self.date_harvested}"
 
 
 class Package(models.Model):
     package = models.IntegerField()
     pack_date = models.DateField()
-    harvest = models.ForeignKey(Harvest, on_delete=models.CASCADE, related_name='packages')
-    batch_number = models.CharField(max_length=50)
-    unit_size = models.IntegerField()
-    mites_tube = models.IntegerField()
+    harvest = models.ForeignKey(Harvest, on_delete=models.CASCADE, related_name='packages', null=True, blank=True)
+    batch_number = models.CharField(unique=True, max_length=50)
+    unit_size = models.IntegerField(default=0)
+    mites_tube = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.package}, {self.harvest}, {self.batch_number}, {self.unit_size}, {self.mites_tube}, {self.pack_date}"
@@ -25,7 +25,7 @@ class Package(models.Model):
 
 class Inventory(models.Model):
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='inventories')
-    units_available = models.IntegerField(null=True, blank=True)
+    units_available = models.IntegerField(default=0)
 
 
     def __str__(self):
