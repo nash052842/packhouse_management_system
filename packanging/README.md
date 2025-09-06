@@ -19,6 +19,7 @@ Set up a simple index view to confirm the app is running
 
 http://127.0.0.1:8000/api/login/
 
+
 {
   "username": "admin",
   "password": "Shember@19"
